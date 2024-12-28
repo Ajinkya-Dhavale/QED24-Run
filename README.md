@@ -8,3 +8,4 @@ This is a front-end application that fetches and displays products from the **Es
 - Filter products by name and category.
 - Sort products by price and rating.
 - Add products to a shopping cart and view cart details.
+    

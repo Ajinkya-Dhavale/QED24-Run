@@ -1,74 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Import Axios
-import './index.css'; // Custom CSS file
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
+import ProductList from "./components/ProductList";
+import ProductDetail from "./components/ProductDetail";
+import Cart from "./components/Cart";
 
-function App() {
+const App = () => {
   const [products, setProducts] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [category, setCategory] = useState('');
+  const [cart, setCart] = useState([]);
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+  const [sort, setSort] = useState("");
 
   useEffect(() => {
-    // Fetch products using Axios
-    axios.get('https://fakestoreapi.com/products')
-      .then((response) => {
-        setProducts(response.data); // Set the response data to products
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the data!", error);
-      });
+    axios.get("https://api.escuelajs.co/api/v1/products")
+      .then(response => setProducts(response.data))
+      .catch(error => console.error("Error fetching products:", error));
   }, []);
 
-  const filteredProducts = products.filter(product => 
-    product.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (category ? product.category === category : true)
+  const addToCart = (product) => {
+    setCart([...cart, { ...product, quantity: 1 }]);
+  };
+
+  const removeFromCart = (id) => {
+    setCart(cart.filter(item => item.id !== id));
+  };
+
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(search.toLowerCase()) &&
+    (category === "" || product.category.name === category)
   );
+
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    if (sort === "priceLowHigh") return a.price - b.price;
+    if (sort === "priceHighLow") return b.price - a.price;
+    if (sort === "ratingHighLow") return b.rating - a.rating;
+    return 0;
+  });
 
   return (
-    <div className="container mt-4">
-      <header>
-        <div className="row mb-4">
-          <div className="col-md-6">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Search Products"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          <div className="col-md-6">
-            <select
-              className="form-control"
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">All Categories</option>
-              <option value="electronics">Electronics</option>
-              <option value="jewelery">Jewelry</option>
-              <option value="men's clothing">Men's Clothing</option>
-              <option value="women's clothing">Women's Clothing</option>
-            </select>
-          </div>
+    <Router>
+      <header className="navbar navbar-light bg-light px-4">
+        <h1>Product Store</h1>
+        <div>
+          <Link to="/" className="btn btn-outline-primary mr-4">Home</Link>
+          <Link to="/cart" className="btn btn-primary">Cart ({cart.length})</Link>
         </div>
       </header>
-
-      <main>
-        <div className="row">
-          {filteredProducts.map(product => (
-            <div key={product.id} className="col-md-4 mb-4">
-              <div className="card custom-card">
-                <img src={product.image} className="card-img-top custom-img" alt={product.title} />
-                <div className="card-body">
-                  <h5 className="card-title">{product.title}</h5>
-                  <p className="card-text">${product.price}</p>
-                  <button className="btn btn-primary">Add to Cart</button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </main>
-    </div>
+      <Routes>
+        <Route path="/" element={
+            <ProductList
+              products={sortedProducts}
+              search={search}
+              setSearch={setSearch}
+              category={category}
+              setCategory={setCategory}
+              sort={sort}
+              setSort={setSort}
+              addToCart={addToCart}
+            />
+          }
+        />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />}
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

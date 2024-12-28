@@ -1,55 +1,115 @@
-/* index.css */
-
-/* Container with padding */
-.container {
-  padding: 20px;
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
 }
 
-/* Custom Card */
-.custom-card {
-  height: 100%; 
-  border: 1px solid #ddd; /* Border for the card */
-  border-radius: 8px; /* Rounded corners */
-  overflow: hidden; /* Hide anything that overflows */
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for the card */
+header {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Image style: make it fill the width of the card, and adjust height accordingly */
-.custom-img {
-  width: 100%;
-  height: 350px; /* Set a fixed height for the image */
-  object-fit: cover; /* Make sure the image fills the space without distortion */
+/* Product Card Styles */
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-/* Card body styling */
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 15px;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Card title and text styling */
+.card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
 .card-title {
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin: 0;
 }
 
 .card-text {
-  font-size: 16px;
-  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #6c757d;
 }
 
-.btn {
-  width: 100%;
+/* Buttons */
+.btn-primary {
+  background-color: #007bff;
+  border: none;
 }
 
-/* Add responsive design for smaller screens */
-@media (max-width: 767px) {
-  .col-md-4 {
-    flex: 0 0 100%; /* Stack the cards on small screens */
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-outline-success {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+/* Search Bar and Dropdown */
+form input[type="text"], select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+/* Cart Styles */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-item button {
+  background-color: #dc3545;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.cart-item button:hover {
+  background-color: #c82333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card img {
+    height: 150px;
   }
+
+  header h1 {
+    font-size: 1.5rem;
+  }
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start; 
+}
+
+.button-container button{
+  height: 35px;
+}
+.btn-text{
+  font-size: 14px;
 }
