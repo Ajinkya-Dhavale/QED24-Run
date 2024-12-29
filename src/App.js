@@ -26,18 +26,6 @@ const App = () => {
     setCart(cart.filter(item => item.id !== id));
   };
 
-  const filteredProducts = products.filter(product =>
-    product.title.toLowerCase().includes(search.toLowerCase()) &&
-    (category === "" || product.category.name === category)
-  );
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sort === "priceLowHigh") return a.price - b.price;
-    if (sort === "priceHighLow") return b.price - a.price;
-    if (sort === "ratingHighLow") return b.rating - a.rating;
-    return 0;
-  });
-
   return (
     <Router>
       <header className="navbar navbar-light bg-light px-4">
@@ -49,21 +37,19 @@ const App = () => {
       </header>
       <Routes>
         <Route path="/" element={
-            <ProductList
-              products={sortedProducts}
-              search={search}
-              setSearch={setSearch}
-              category={category}
-              setCategory={setCategory}
-              sort={sort}
-              setSort={setSort}
-              addToCart={addToCart}
-            />
-          }
-        />
+          <ProductList 
+            products={products}
+            search={search}
+            setSearch={setSearch}
+            category={category}
+            setCategory={setCategory}
+            sort={sort}
+            setSort={setSort}
+            addToCart={addToCart}
+          />
+        } />
         <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />}
-        />
+        <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
       </Routes>
     </Router>
   );
