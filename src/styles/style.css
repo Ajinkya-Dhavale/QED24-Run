@@ -1,14 +1,15 @@
 /* General Styles */
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+  margin: 0px;
+  padding: 0px;
   background-color: #f8f9fa;
 }
 
 header {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+
 
 /* Product Card Styles */
 .card {
@@ -20,12 +21,20 @@ header {
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
+.manage_img{
+  overflow: hidden;
+}
+
 .card img {
   height: 200px;
   object-fit: cover;
   border-bottom: 1px solid #ddd;
 }
 
+.card img:hover{
+  transform: scale(1.1,1.1);
+  transition: 1s;
+}
 .card-title {
   font-size: 1rem;
   font-weight: bold;

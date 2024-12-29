@@ -65,7 +65,7 @@ const ProductList = ({ products, search, setSearch, category, setCategory, sort,
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <div className="col-md-3 mb-4" key={product.id}>
-              <div className="card h-100">
+              <div className="card manage_img h-100">
                 <img
                   src={product.images[0]}
                   className="card-img-top"
