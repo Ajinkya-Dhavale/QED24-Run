@@ -41,12 +41,12 @@ const App = () => {
       <header className="navbar navbar-light bg-light px-4">
         <h1>Product Store</h1>
         <div>
-          <Link to="/" className="btn btn-outline-primary mr-4">Home</Link>
+          <Link to="/QED24-run" className="btn btn-outline-primary mr-4">Home</Link>
           <Link to="/cart" className="btn btn-primary">Cart ({cart.length})</Link>
         </div>
       </header>
       <Routes>
-        <Route path="/" element={
+        <Route path="/QED24-run" element={
           <ProductList 
             products={products}
             search={search}
