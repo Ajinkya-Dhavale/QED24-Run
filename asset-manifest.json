@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/QED24-run/static/css/main.b26a07e7.css",
+    "main.js": "/QED24-run/static/js/main.f126ead7.js",
+    "index.html": "/QED24-run/index.html",
+    "main.b26a07e7.css.map": "/QED24-run/static/css/main.b26a07e7.css.map",
+    "main.f126ead7.js.map": "/QED24-run/static/js/main.f126ead7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b26a07e7.css",
+    "static/js/main.f126ead7.js"
+  ]
+}
