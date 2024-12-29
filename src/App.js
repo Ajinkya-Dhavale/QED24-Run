@@ -19,9 +19,19 @@ const App = () => {
   }, []);
 
   const addToCart = (product) => {
-    setCart([...cart, { ...product, quantity: 1 }]);
+    setCart((prevCart) => {
+      const existingProduct = prevCart.find((item) => item.id === product.id);
+      if (existingProduct) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      } else {
+        return [...prevCart, { ...product, quantity: 1 }];
+      }
+    });
   };
-
   const removeFromCart = (id) => {
     setCart(cart.filter(item => item.id !== id));
   };
@@ -49,7 +59,7 @@ const App = () => {
           />
         } />
         <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
+        <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} setCart={setCart} />} />
       </Routes>
     </Router>
   );

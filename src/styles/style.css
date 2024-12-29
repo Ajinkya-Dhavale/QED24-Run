@@ -65,7 +65,7 @@ header {
   background-color: #28a745;
   color: #fff;
 }
-
+    
 /* Search Bar and Dropdown */
 form input[type="text"], select {
   border: 1px solid #ccc;
@@ -122,5 +122,3 @@ form input[type="text"], select {
 .btn-text{
   font-size: 14px;
 }
-
-

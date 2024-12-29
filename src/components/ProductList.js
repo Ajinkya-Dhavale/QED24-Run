@@ -29,7 +29,7 @@ const ProductList = ({ products, search, setSearch, category, setCategory, sort,
   }
 
   return (
-    <div className="container mt-4">
+    <div className="container-fluid pl-md-5 pl-4 pr-md-5 pr-4 mt-4">
       <div className="row mb-4">
         <div className="col-md-4">
           <input type="text" className="form-control" placeholder="Search by name" value={search} onChange={(e) => setSearch(e.target.value)} />
