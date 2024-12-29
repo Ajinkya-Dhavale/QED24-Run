@@ -1,6 +1,10 @@
-# QED24-Assignment
+# QED24-Assignment Run
 
 This is a front-end application that fetches and displays products from the **EscuelaJS API**. The app includes features like product listing, filtering, sorting, and viewing product details. Users can also add products to their cart and view the total price.
+
+## Live Demo
+
+Visit the live application here: [QED24-Run](https://ajinkya-dhavale.github.io/QED24-run)
 
 ### Features:
 - Fetch and display a list of products.
@@ -8,7 +12,6 @@ This is a front-end application that fetches and displays products from the **Es
 - Filter products by name and category.
 - Sort products by price and rating.
 - Add products to a shopping cart and view cart details.
-    
 
 ## Setup Instructions
 
